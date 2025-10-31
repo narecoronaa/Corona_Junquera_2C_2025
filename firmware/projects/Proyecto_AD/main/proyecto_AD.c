@@ -1,12 +1,20 @@
-/*! @mainpage Osciloscopio digital con ADC y transmisión UART
+/*! @mainpage Adquisición de señal piezoeléctrica por ADC y envío por UART
  *
  * @section genDesc Descripción General
  *
- * Esta aplicación digitaliza una señal analógica del canal CH1 del conversor AD
- * y la transmite por UART a un graficador de puerto serie de la PC.
+ * Esta aplicación adquiere la señal analógica de un sensor piezoeléctrico
+ * conectada al canal CH1 del ADC del microcontrolador. La señal se muestrea
+ * periódicamente mediante un timer a 20 kHz (periodo = 50 μs) y cada muestra
+ * se transmite por UART al PC en formato ASCII (miliVoltios) para su registro
+ * o procesado por software externo.
  *
- * PARTE 1: Lectura de potenciómetro a 500Hz para visualización en Serial Oscilloscope
- * PARTE 2: Generación de señal ECG por DAC a 250Hz (cada 4ms) 
+ * Características principales:
+ * - Sensor: piezoeléctrico (alta impedancia) conectado a CH1 del ADC.
+ * - Muestreo: 20 kHz (50 μs).
+ * - ADC: 12 bits (0..4095), conversión a mV antes de enviar.
+ * - Comunicación: UART a 921600 bps, envío de valores enteros en mV terminados en CRLF.
+ * - Implementación: Timer que notifica una tarea FreeRTOS (AdcTask) mediante
+ *   vTaskNotifyGiveFromISR; la tarea lee el ADC y envía por UART.
  *
  * @section hardConn Conexión de Hardware
  *
@@ -14,14 +22,20 @@
  * |:--------------:|:--------------|
  * | 	CH1 ADC	 	| 	GPIO_1		|
  * | 	UART_PC	 	| 	USB			|
- * | 	CH0 DAC	    | 	GPIO_25		|
  *
+ * @section precautions Precauciones de hardware
+ *
+ * - No conectar el sensor directamente si puede generar tensiones fuera del
+ *   rango 0..Vref: usar condicionamiento (offset, divisor, buffer).
+ * - Añadir protección contra picos (diodos, resistor en serie) y una carga
+ *   apropiada para el piezoeléctrico (alta impedancia de entrada).
+ * - Evitar usar sprintf con floats en ISR o con poca pila; enviar enteros (mV).
  *
  * @section changelog Changelog
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 24/10/2025 | Implementación osciloscopio digital            |
+ * | 31/10/2025 | Adquisicion de señal analógica del piezoelectrico |
  *
  * @author Corona Narella (narella.corona@ingenieria.uner.edu.ar)
  */
