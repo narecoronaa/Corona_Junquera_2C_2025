@@ -3,7 +3,7 @@ idf_build_get_property(target IDF_TARGET)
 # Always compiled source files
 set(srcs
     "microcontroller/src/gpio_mcu.c"
-    #"microcontroller/src/delay_mcu.c"
+    "microcontroller/src/delay_mcu.c"
     "microcontroller/src/timer_mcu.c"
     "microcontroller/src/uart_mcu.c"
     #"microcontroller/src/spi_mcu.c"
