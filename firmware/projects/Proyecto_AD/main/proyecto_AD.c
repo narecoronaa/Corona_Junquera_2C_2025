@@ -71,7 +71,7 @@
 #define ADC_THRESHOLD_MV_MINIMUM        400
 
 /** Umbral para la detección del evento*/
-#define ADC_THRESHOLD_MV_MEDIUM       700
+#define ADC_THRESHOLD_MV_MEDIUM       800
 
 /** Umbral para la detección del evento*/
 #define ADC_THRESHOLD_MV_MAX       1200
