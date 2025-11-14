@@ -45,6 +45,7 @@
 #include "neopixel_stripe.h"
 #include "gpio_mcu.h"
 #include "drum_samples.h" 
+#include "esp_mac.h"
 
 /*==================[macros and definitions]=================================*/
 /** Período del timer A para muestreo ADC: 20KHz = 50μs */

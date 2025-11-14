@@ -34,10 +34,10 @@
             "path": "examples/ej_mfrc522"
         },
         {
-            "path": "projects/Proyecto_DrumPads_2025"
+            "path": "projects/Proyecto_AD"
         },
         {
-            "path": "projects/Proyecto_AD"
+            "path": "projects/DrumPads"
         }
     ],
     "settings": {
