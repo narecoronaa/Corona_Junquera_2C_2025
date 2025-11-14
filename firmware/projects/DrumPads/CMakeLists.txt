@@ -6,4 +6,4 @@ list(APPEND EXTRA_COMPONENT_DIRS "../../drivers")
 
 include_directories(${PROJECT_NAME} ../../drivers)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(ej_mfrc522)
+project(DrumPads)

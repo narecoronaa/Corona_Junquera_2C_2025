@@ -205,7 +205,8 @@ static void AdcTask(void *pvParameters) {
             UartSendString(UART_PC, buffer);
 
             // Notifica a las otras tareas
-            vTaskNotifyGive(umbral_task_handle); 
+            // Línea 208 (Corregida)
+            xTaskNotify(umbral_task_handle, 0, eIncrement);
             xTaskNotify(playSound_task_handle, PLAY_SNARE, eSetValueWithOverwrite);
         } 
         
@@ -218,7 +219,8 @@ static void AdcTask(void *pvParameters) {
             UartSendString(UART_PC, buffer);
 
             // Notifica a las otras tareas
-            vTaskNotifyGive(umbral_task_handle);
+            // Línea 208 (Corregida)
+            xTaskNotify(umbral_task_handle, 0, eIncrement);
             xTaskNotify(playSound_task_handle, PLAY_HIHAT, eSetValueWithOverwrite);
         }
     }
